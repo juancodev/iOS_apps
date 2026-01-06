@@ -59,18 +59,7 @@ struct IMCView: View {
             
             // Button Calculate Section
             
-            HStack{
-                Button(action: {
-                    print("test")
-                }){
-                    Text("Calcular")
-                        .font(.title)
-                        .bold()
-                        .foregroundStyle(.white)
-                }
-            }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 85)
-                .background(.backgroundComponent)
-                .cornerRadius(15)
+            IMCCalculateButton(userWeight: Double(weight), userHeight: Double(height))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.vertical, 10)
@@ -85,6 +74,26 @@ struct IMCView: View {
         }
         //.navigationBarBackButtonHidden()
         //.navigationTitle("IMC Calculator")
+    }
+}
+
+// Si llego a presentar problema visual en la preview, solamente debo ejecutar desde el emulador y listo.
+
+struct IMCCalculateButton:View {
+    let userWeight:Double
+    let userHeight:Double
+    var body: some View {
+        NavigationStack {
+            NavigationLink(destination:{ IMCResult(userWeight: userWeight, userHeight: userHeight) }){
+                Text("Calcular")
+                    .font(.title)
+                    .bold()
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 85)
+                    .background(.backgroundComponent)
+                    .cornerRadius(15)
+            }
+        }
     }
 }
 
